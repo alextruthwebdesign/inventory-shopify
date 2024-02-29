@@ -15,9 +15,9 @@
 {{ shop.metaobjects['app--83603914753--variants-data']}}  {% endcomment %}
 
 {% comment %} {{ product.metafields.app--83603914753--variants}} {% endcomment %}
-{{product.metafields.app--83603914753--inventories.inventories}}
-
-{{ product.metafields.app--83603914753--variants}}
+{% comment %} {{product.metafields.app--83603914753--inventories.inventories}} {% endcomment %}
+  
+{% comment %} {{ product.metafields.app--83603914753--variants}} {% endcomment %}
 {% comment %} {{ product.metafields.app--83603914753--variants}} {% endcomment %}
 
  {% comment %} </br>
@@ -39,7 +39,7 @@
   {{block.value}}
  {% endfor %} {% endcomment %}
 
-
+ 
 
  
 <section
@@ -54,6 +54,7 @@
   {{ 'component-rating.css' | asset_url | stylesheet_tag }}
   {{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}
   {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+
 
   {%- style -%}
     .section-{{ section.id }}-padding {
@@ -351,9 +352,10 @@
                 block: block,
                 share_link: share_url
               %}
-
+        
             {%- when 'variant_picker' -%}
-              {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
+              {%- render 'swatches', product: product -%}  
+              {% comment %} {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %} {% endcomment %}
             {%- when 'buy_buttons' -%}
               {%- render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true -%}
             {%- when 'rating' -%}
