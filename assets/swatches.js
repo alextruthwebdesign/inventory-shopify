@@ -4,6 +4,19 @@ const variantContainer =
 const inventories =
   swatchesVariantsContainer?.querySelector("#stockData")?.innerHTML;
 
+const removeActiveClass = (elements) => {
+  elements?.forEach((elem) => {
+    elem?.classList?.remove("active");
+  });
+  const variantElements = document?.querySelectorAll(
+    `.variant-container .variant-value`
+  );
+
+  variantElements?.forEach((i) => {
+    i?.classList?.remove("disabled");
+  });
+};
+
 const checkVariantStock = () => {
   const selectedVariants = document?.querySelectorAll(
     `.variant-container .variant-value.active`
@@ -46,6 +59,7 @@ variantContainer?.forEach((variant) => {
   const variantElements = variant?.querySelectorAll(".variant-value");
   variantElements?.forEach((elem) => {
     elem?.addEventListener("click", function (e) {
+      removeActiveClass(variantElements);
       e?.currentTarget?.classList?.add("active");
       const notInStock = checkVariantStock();
       if (notInStock === "no") {
